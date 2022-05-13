@@ -1,11 +1,13 @@
-export default class App {
-  constructor($target) {
-    this.$target = $target;
-    this.render();
+import Component from "./core/Component.js";
+import { $ } from "./utils/selector.js";
+
+export default class App extends Component {
+  static createApp(appName) {
+    return new App({ $target: $(appName) });
   }
 
-  render() {
-    this.$target.innerHTML = `
+  template() {
+    return (this.$target.innerHTML = `
         <div class="SelectedLanguage">
             <ul>
             <li>JavaScript</li>
@@ -26,6 +28,6 @@ export default class App {
             <li>Pure<span class="Suggestion__item--matched">Script</span></li>
             </ul>
         </div>
-        `;
+        `);
   }
 }
